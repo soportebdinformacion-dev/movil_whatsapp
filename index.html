@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agrícola Huarmey - WhatsApp Masivo</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --color-primary: #388e3c; /* Verde Corporativo */
+      --color-secondary: #d32f2f; /* Rojo/Naranja Suave Corporativo */
+      --bg-soft: #f4f7f5;
+    }
+    body {
+      background-color: var(--bg-soft);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .btn-primary {
+      background-color: var(--color-primary);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+    .border-custom {
+      border-top: 4px solid var(--color-primary);
+    }
+    .badge-sent {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8">
+
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md overflow-hidden border-custom">
+    
+    <div class="p-6 bg-white border-b border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABgCAYAAACw6coXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFm0lEQVR4nO2dW2hcVRSG/zNzpkmamqYxrS9pXmptm6S02hSloBYVvA9S0Yog+uCDIn0QvIggooIPgvhgHwreK6I+iGArvYgIWrwUvSAtpYm2SdqkaZPMpE2SmclMzs6Hw0wmZ86cmX3OyZ79/2DYw56z99rnrLX2XgshwDAMwzAMwzAMwzAMwzAMwzAMwzAMwzCMwUen3gA88T+6gD7gfHAZfMD84CHguB9Tftm8f87vswC4A6gA08AsMAmMAf3ADv/bN+w5UfCAn6f+7H3gZ789AowDu/yyR4EDwAHgPWAf0AZ0+OfOBlc67OfuB84CHcAi8D2wAHwHzALjwO/An8BN/7uM/9zV4ErGv9Bvvw24zW8TfqwTfk46uC6E0wO76wBwOnwAnAtX7mXg3HA9Prc6fK0FfK79mC9fA85r+z7X/r5/wE8X/rP7g9Ph6g6Y6GZwm8NreT08vObe5j9rAbAnXL8e8CHwGZAK7oU7XN26fV49/MynW7fPa8B5rU8L1pYOn938eX6v/eyx8POnwtfnw30wW/i1X9Z4YfO7S7wW4dfvCte1wI/lwvXv9/X0Xm307FjD/A7Y3gGbwY0uN6a0bO/T6eA2hBf0w/D3Cpt9vY3ZpGZ9Sg7v5fK9Z8gGtt6G6wK/VwtX3g8PhKsr+5xscOnCrv6mby/5HDAfrscf2j6vHvb76vDZZf6D6/K90T6b0uF3rM5t7W+YF9U5OofX5YFrC9gZzivh3vL2Dtgc7lVvhnvWvWz6fW5PqHq4vO7N+e85NqNnwwzZ0DNDNqyvM7S7Y819v4/L/Ofs0Z+9XF6X+XW6X6frX+f3M7Nq1z4bNto/6Nis7zGfqw7fB9W9g8bW5t7m8uX6fX2Pbe5t3/D6fPZ97Gf7DfeHujfs2F6b7gH3At1+X9v/2UvAFuDHcG+6O80XfA/p8X3t+VqFm3Z+n/vM2wL2gK/N9/p9bf/N6vG16T6f/Ryvy6fT87p8Or3D/e9t9PjYv9H+oH7b6PGr1vD56tav0/7f6HGea07b79v1POf6r8b/dY/3XMeHvvvP8U6398bM+n+U0/4wYxjXWn9X9f7Z0Fp/u8Y1v03X9ZzX/K7pXOf1vP8W6vC53r8C/Gatw3/PZf3Oes7/Z/8+Z/8P9oZp7X9/YyN7e6Yg17XWn/m/9t9yXesZ87v8N6qO69/m/jfrfTaq9+U+N8/bM/+r8f9e/UfV+Z7zmNd6zv6N9gGZ23sM76X9N9/I9mY9b9beK88Y0rWWM6b99xn+Xff9738bXfca/+ZzXtdfR9fM+XFep8fxf6fRfm9E65z2X/scz+fSsc9fX3+13r/6fU7rnGvtcR/Xb9Y933/zNeqZ4TpzXvW77v3Ofp9Vv+mYx76f/v6Y732v/WbW87p+03fX83f0fX6X/+b/qT6f6vvf9/7f9v6bWb1/3Tmsfdf99Zp9n+/zV6P9R9eYr/mZtZxrVv+W84xzrfk3Wv9zVp97Xetd6fG7XvunrPe7XvvPWe3X/C1Xj9Vn/pbrM9/bM1b/Wv9NfP/NrfbMev9MWe/v/bX+Yv+9G6w+c6M9m6r+032uv8+9Z/6Xq/pXf6/p2gXvOdfaM97n99p/0X19g/6+w3/zXfPZ/+aY/1vXPqdrPvvZfPdVfV8/M19fWtf/M6tr3pZ/87w9M2e+e5Y3X2vXes7n+6r93Zuvvef7eq77ur933P+fO8t6r7U+833FvF/XfsbX6PrfW/N8rVnnP9eZ1f57G73f/n/Neq/X6fdf9T6u33/Neq83Wp9fP6pzvubY16xr9/mscf+YVfs9V//N2M8M7+V2O7b/9wzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDGLX+A096oCHwH28dAAAAAElFTkSuQmCC" 
+             alt="Agrícola Huarmey Logo" class="h-16 w-auto object-contain">
+      </div>
+      <div class="text-center sm:text-right">
+        <h1 class="text-2xl font-bold text-gray-800 flex items-center justify-center sm:justify-end gap-2">
+          <i data-lucide="send-horizontal" class="text-green-600"></i> WhatsApp Masivo
+        </h1>
+        <p class="text-sm text-gray-500 mt-1">Panel de control de envíos rápidos</p>
+      </div>
+    </div>
+
+    <div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <div class="lg:col-span-1 space-y-4">
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-4 h-4 text-green-600"></i> Redactar Mensaje</span>
+          </label>
+          <textarea id="txtMensaje" rows="6" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none text-sm" 
+            placeholder="Hola {nombre}, tu categoría es {categoria}."></textarea>
+          <p class="text-xs text-gray-500 mt-2">Puedes usar etiquetas dinámicas reemplazables automáticamente: <br><strong>{nombre}</strong> y <strong>{categoria}</strong></p>
+        </div>
+
+        <button id="btnIniciar" onclick="procesarEnvios()" class="w-full btn-primary text-white font-medium py-3 px-4 rounded-lg shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="play" class="w-5 h-5"></i> Iniciar Cola de Envíos
+        </button>
+        
+        <div id="progresoContenedor" class="hidden bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-2">
+          <div class="flex justify-between text-xs font-semibold text-gray-600">
+            <span id="progresoTexto">Procesando...</span>
+            <span id="progresoPorcentaje">0%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progresoBarra" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 flex flex-col">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-sm font-bold text-gray-700 flex items-center gap-1">
+            <i data-lucide="users" class="w-4 h-4 text-green-600"></i> Destinatarios detectados en 'registros'
+          </h3>
+          <span id="contadorTotal" class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">Cargando...</span>
+        </div>
+
+        <div class="border border-gray-200 rounded-lg overflow-x-auto bg-gray-50 flex-1 max-h-[400px]">
+          <table class="w-full text-left border-collapse bg-white text-sm">
+            <thead class="bg-gray-50 text-gray-600 sticky top-0 border-b border-gray-200 z-10">
+              <tr>
+                <th class="p-3 font-semibold">DNI</th>
+                <th class="p-3 font-semibold">Apellidos y Nombres</th>
+                <th class="p-3 font-semibold">Categoría</th>
+                <th class="p-3 font-semibold">WhatsApp</th>
+                <th class="p-3 font-semibold text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaContactos" class="divide-y divide-gray-100">
+              <tr>
+                <td colspan="5" class="p-8 text-center text-gray-400">Cargando base de datos desde Sheets...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let listadoContactos = [];
+    let enviadosDni = new Set(); // Guarda los DNI ya enviados en esta sesión
+
+    // Ejecución al iniciar la app
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      cargarContactosDesdeSheets();
+    });
+
+    function cargarContactosDesdeSheets() {
+      google.script.run
+        .withSuccessHandler(contactos => {
+          listadoContactos = contactos;
+          document.getElementById('contadorTotal').innerText = `${contactos.length} registros`;
+          renderizarTabla();
+        })
+        .withFailureHandler(err => {
+          alert("Error crítico al leer datos: " + err.message);
+        })
+        .obtenerContactos();
+    }
+
+    function renderizarTabla() {
+      const tbody = document.getElementById('tablaContactos');
+      if (listadoContactos.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400">No se encontraron registros en la hoja.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = '';
+      listadoContactos.forEach((c, index) => {
+        const yaEnviado = enviadosDni.has(c.dni);
+        const tr = document.createElement('tr');
+        tr.className = yaEnviado ? "bg-green-50/50" : "hover:bg-gray-50";
+        tr.innerHTML = `
+          <td class="p-3 font-medium text-gray-700">${c.dni}</td>
+          <td class="p-3 text-gray-600">${c.nombre}</td>
+          <td class="p-3"><span class="px-2 py-0.5 text-xs rounded-md bg-gray-100 text-gray-700">${c.categoria}</span></td>
+          <td class="p-3 text-gray-600 font-mono">${c.whatsapp}</td>
+          <td class="p-3 text-center">
+            ${yaEnviado 
+              ? `<span class="badge-sent px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Enviado</span>`
+              : `<button onclick="individualEnvio(${index})" class="text-green-600 hover:text-green-800 p-1 rounded hover:bg-green-50 inline-flex items-center gap-1 font-medium text-xs cursor-pointer">
+                   <i data-lucide="send" class="w-3.5 h-3.5"></i> Enviar
+                 </button>`
+            }
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    // Preparar el mensaje reemplazando las variables {nombre} y {categoria}
+    function construirMensaje(contacto) {
+      let msg = document.getElementById('txtMensaje').value;
+      if (!msg.trim()) {
+        msg = "Hola {nombre}, te contactamos de Agrícola Huarmey. Tu categoría asignada es {categoria}.";
+      }
+      msg = msg.replace(/{nombre}/g, contacto.nombre);
+      msg = msg.replace(/{categoria}/g, contacto.categoria);
+      return encodeURIComponent(msg);
+    }
+
+    // Acción para una sola fila
+    function individualEnvio(index) {
+      const contacto = listadoContactos[index];
+      
+      if (enviadosDni.has(contacto.dni)) {
+        if (!confirm(`⚠️ ATENCIÓN:\nEl mensaje para ${contacto.nombre} (DNI: ${contacto.dni}) ya ha sido enviado en esta sesión.\n¿Estás seguro de que deseas volver a enviarlo?`)) {
+          return;
+        }
+      }
+
+      despacharWhatsApp(contacto);
+    }
+
+    // Enviar a todos en cola de manera secuencial dinámica
+    async function procesarEnvios() {
+      if (listadoContactos.length === 0) return;
+      
+      const contenedor = document.getElementById('progresoContenedor');
+      const barra = document.getElementById('progresoBarra');
+      const porcentaje = document.getElementById('progresoPorcentaje');
+      const texto = document.getElementById('progresoTexto');
+
+      contenedor.classList.remove('hidden');
+
+      for (let i = 0; i < listadoContactos.length; i++) {
+        const contacto = listadoContactos[i];
+        
+        // Alertas dinámicas si ya se procesó previamente en el bucle masivo
+        if (enviadosDni.has(contacto.dni)) {
+          if (!confirm(`⚠️ ALERTA DE DUPLICADO:\nEl DNI ${contacto.dni} (${contacto.nombre}) ya figura como enviado.\n¿Deseas reenviar o saltar? (Aceptar = Reenviar, Cancelar = Saltar)`)) {
+            continue; 
+          }
+        }
+
+        // Actualizar UI del progreso
+        let progreso = Math.round(((i + 1) / listadoContactos.length) * 100);
+        barra.style.width = `${progreso}%`;
+        porcentaje.innerText = `${progreso}%`;
+        texto.innerText = `Abriendo chat de ${contacto.nombre}...`;
+
+        despacharWhatsApp(contacto);
+        
+        // Pequeño delay de procesamiento visual
+        await new Promise(resolve => setTimeout(resolve, 800));
+      }
+
+      texto.innerText = "¡Proceso terminado!";
+    }
+
+    // Abre la pestaña de WhatsApp Web o Escritorio
+    function despacharWhatsApp(contacto) {
+      if (!contacto.whatsapp) {
+        alert(`El contacto ${contacto.nombre} no tiene un número telefónico asignado.`);
+        return;
+      }
+      
+      // Limpiar formato del número por seguridad (eliminar espacios o guiones)
+      let telf = contacto.whatsapp.replace(/\D/g, '');
+      
+      // Ajustar código de país por defecto si no lo tiene (Perú: 51)
+      if (telf.length === 9) {
+        telf = "51" + telf;
+      }
+
+      const mensajeFinal = construirMensaje(contacto);
+      const url = `https://api.whatsapp.com/send?phone=${telf}&text=${mensajeFinal}`;
+      
+      // Abrir en pestaña nueva
+      window.open(url, '_blank');
+
+      // Marcar como enviado y actualizar la interfaz de inmediato
+      enviadosDni.add(contacto.dni);
+      renderizarTabla();
+    }
+  </script>
+</body>
+</html>
