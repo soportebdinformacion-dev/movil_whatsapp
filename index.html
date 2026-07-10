@@ -1,237 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Agrícola Huarmey - WhatsApp Masivo</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    :root {
-      --color-primary: #388e3c; /* Verde Corporativo */
-      --color-secondary: #d32f2f; /* Rojo/Naranja Suave Corporativo */
-      --bg-soft: #f4f7f5;
-    }
-    body {
-      background-color: var(--bg-soft);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .btn-primary {
-      background-color: var(--color-primary);
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background-color: #2e7d32;
-    }
-    .border-custom {
-      border-top: 4px solid var(--color-primary);
-    }
-    .badge-sent {
-      background-color: #e8f5e9;
-      color: #2e7d32;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Corporativa de Envío Masivo Agrícola Huarmey | Fundo Frusan</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
-<body class="p-4 md:p-8">
+<body class="bg-[#f4f6f9] min-h-screen font-sans antialiased text-gray-800">
 
-  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md overflow-hidden border-custom">
-    
-    <div class="p-6 bg-white border-b border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABgCAYAAACw6coXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFm0lEQVR4nO2dW2hcVRSG/zNzpkmamqYxrS9pXmptm6S02hSloBYVvA9S0Yog+uCDIn0QvIggooIPgvhgHwreK6I+iGArvYgIWrwUvSAtpYm2SdqkaZPMpE2SmclMzs6Hw0wmZ86cmX3OyZ79/2DYw56z99rnrLX2XgshwDAMwzAMwzAMwzAMwzAMwzAMwzAMwzCMwUen3gA88T+6gD7gfHAZfMD84CHguB9Tftm8f87vswC4A6gA08AsMAmMAf3ADv/bN+w5UfCAn6f+7H3gZ789AowDu/yyR4EDwAHgPWAf0AZ0+OfOBlc67OfuB84CHcAi8D2wAHwHzALjwO/An8BN/7uM/9zV4ErGv9Bvvw24zW8TfqwTfk46uC6E0wO76wBwOnwAnAtX7mXg3HA9Prc6fK0FfK79mC9fA85r+z7X/r5/wE8X/rP7g9Ph6g6Y6GZwm8NreT08vObe5j9rAbAnXL8e8CHwGZAK7oU7XN26fV49/MynW7fPa8B5rU8L1pYOn938eX6v/eyx8POnwtfnw30wW/i1X9Z4YfO7S7wW4dfvCte1wI/lwvXv9/X0Xm307FjD/A7Y3gGbwY0uN6a0bO/T6eA2hBf0w/D3Cpt9vY3ZpGZ9Sg7v5fK9Z8gGtt6G6wK/VwtX3g8PhKsr+5xscOnCrv6mby/5HDAfrscf2j6vHvb76vDZZf6D6/K90T6b0uF3rM5t7W+YF9U5OofX5YFrC9gZzivh3vL2Dtgc7lVvhnvWvWz6fW5PqHq4vO7N+e85NqNnwwzZ0DNDNqyvM7S7Y819v4/L/Ofs0Z+9XF6X+XW6X6frX+f3M7Nq1z4bNto/6Nis7zGfqw7fB9W9g8bW5t7m8uX6fX2Pbe5t3/D6fPZ97Gf7DfeHujfs2F6b7gH3At1+X9v/2UvAFuDHcG+6O80XfA/p8X3t+VqFm3Z+n/vM2wL2gK/N9/p9bf/N6vG16T6f/Ryvy6fT87p8Or3D/e9t9PjYv9H+oH7b6PGr1vD56tav0/7f6HGea07b79v1POf6r8b/dY/3XMeHvvvP8U6398bM+n+U0/4wYxjXWn9X9f7Z0Fp/u8Y1v03X9ZzX/K7pXOf1vP8W6vC53r8C/Gatw3/PZf3Oes7/Z/8+Z/8P9oZp7X9/YyN7e6Yg17XWn/m/9t9yXesZ87v8N6qO69/m/jfrfTaq9+U+N8/bM/+r8f9e/UfV+Z7zmNd6zv6N9gGZ23sM76X9N9/I9mY9b9beK88Y0rWWM6b99xn+Xff9738bXfca/+ZzXtdfR9fM+XFep8fxf6fRfm9E65z2X/scz+fSsc9fX3+13r/6fU7rnGvtcR/Xb9Y933/zNeqZ4TpzXvW77v3Ofp9Vv+mYx76f/v6Y732v/WbW87p+03fX83f0fX6X/+b/qT6f6vvf9/7f9v6bWb1/3Tmsfdf99Zp9n+/zV6P9R9eYr/mZtZxrVv+W84xzrfk3Wv9zVp97Xetd6fG7XvunrPe7XvvPWe3X/C1Xj9Vn/pbrM9/bM1b/Wv9NfP/NrfbMev9MWe/v/bX+Yv+9G6w+c6M9m6r+032uv8+9Z/6Xq/pXf6/p2gXvOdfaM97n99p/0X19g/6+w3/zXfPZ/+aY/1vXPqdrPvvZfPdVfV8/M19fWtf/M6tr3pZ/87w9M2e+e5Y3X2vXes7n+6r93Zuvvef7eq77ur933P+fO8t6r7U+833FvF/XfsbX6PrfW/N8rVnnP9eZ1f57G73f/n/Neq/X6fdf9T6u33/Neq83Wp9fP6pzvubY16xr9/mscf+YVfs9V//N2M8M7+V2O7b/9wzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDGLX+A096oCHwH28dAAAAAElFTkSuQmCC" 
-             alt="Agrícola Huarmey Logo" class="h-16 w-auto object-contain">
-      </div>
-      <div class="text-center sm:text-right">
-        <h1 class="text-2xl font-bold text-gray-800 flex items-center justify-center sm:justify-end gap-2">
-          <i data-lucide="send-horizontal" class="text-green-600"></i> WhatsApp Masivo
-        </h1>
-        <p class="text-sm text-gray-500 mt-1">Panel de control de envíos rápidos</p>
-      </div>
+    <nav class="bg-[#0f172a] text-white shadow-md px-6 py-4 border-b-4 border-[#128C7E]">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-white p-2 rounded-lg shadow-sm flex items-center justify-center w-14 h-14">
+                    <img id="empresaLogo" src="AGRICOLA HUARMEY.png" alt="Logo" class="max-h-full max-w-full object-contain" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/150x150/0f172a/ffffff?text=LOGO';">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight uppercase">Módulo de Comunicaciones</h1>
+                    <p class="text-xs text-gray-400">Plataforma Oficial de Envío Masivo Empresa Agrícola Huarmey</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 bg-[#1e293b] px-3 py-1.5 rounded-full border border-gray-700">
+                <span class="w-2h h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-medium text-gray-300">Servicio Web Activo</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xs border border-gray-200 flex flex-col gap-5">
+                
+                <div>
+                    <h2 class="text-base font-bold text-[#0f172a] mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-file-excel text-[#128C7E] text-lg"></i> 1. Cargar Archivo Excel
+                    </h2>
+                    <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-gray-200 border-dashed rounded-xl cursor-pointer bg-gray-50 hover:bg-slate-100/50 hover:border-[#128C7E] transition-all">
+                        <div class="flex flex-col items-center justify-center text-center px-2">
+                            <i class="fa-solid fa-cloud-arrow-up text-gray-400 text-xl mb-1"></i>
+                            <p class="text-xs text-gray-600 font-semibold">Subir archivo de datos</p>
+                            <p class="text-[10px] text-gray-400 mt-0.5">Soporta .xlsx, .xls o .csv</p>
+                        </div>
+                        <input id="fileExcel" type="file" accept=".xlsx, .xls, .csv" class="hidden" />
+                    </label>
+                    <div id="fileInfo" class="text-xs text-emerald-600 font-medium mt-2 hidden flex items-center gap-1 bg-emerald-50 p-2 rounded border border-emerald-100">
+                        <i class="fa-solid fa-circle-check"></i> <span id="fileName" class="truncate max-w-[200px]"></span>
+                    </div>
+                </div>
+
+                <div class="relative flex py-1 items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="flex-shrink mx-3 text-gray-400 text-[10px] font-bold uppercase tracking-wider">O copiar de hoja</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+
+                <div>
+                    <h2 class="text-base font-bold text-[#0f172a] mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list text-slate-500 text-lg"></i> O pegar columnas
+                    </h2>
+                    <textarea id="rawData" rows="4" 
+                        class="w-full p-2.5 border border-gray-200 rounded-lg text-xs font-mono focus:ring-2 focus:ring-[#128C7E] focus:outline-none bg-gray-50 placeholder-gray-400 resize-none"
+                        placeholder="DNI	Apellidos y Nombres	Celular&#10;44556677	Pérez Juan	999888777"></textarea>
+                    
+                    <button id="btnProcesarTexto" class="w-full mt-2 bg-[#0f172a] hover:bg-[#1e293b] text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer text-xs shadow-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gears"></i> Procesar Bloque Pegado
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                    <h2 class="text-base font-bold text-[#0f172a] mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-comment-dots text-[#128C7E] text-lg"></i> 2. Redacción de Plantilla
+                    </h2>
+                    <p class="text-xs text-gray-500 mb-3">
+                        Utiliza variables automáticas: 
+                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{nombre}</span> y 
+                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{dni}</span>
+                    </p>
+
+                    <textarea id="txtMensaje" rows="3" 
+                        class="w-full p-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#128C7E] focus:outline-none placeholder-gray-400"
+                        placeholder="Estimado(a) {nombre}, su DNI {dni} ya se encuentra habilitado para el ingreso físico. Saludos corporativos."></textarea>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
+                        <h2 class="text-base font-bold text-[#0f172a] flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-indigo-500 text-lg"></i> 3. Cola de Despacho
+                        </h2>
+                        <span id="contador" class="text-xs font-bold bg-[#edf7f5] text-[#128C7E] px-3 py-1 rounded-full border border-[#d1e9e4]">0 registros</span>
+                    </div>
+
+                    <div class="overflow-x-auto flex-1 max-h-[320px] border border-gray-100 rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-slate-700 uppercase bg-slate-50 sticky top-0 border-b border-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3">DNI</th>
+                                    <th class="px-4 py-3">Apellidos y Nombres</th>
+                                    <th class="px-4 py-3">Celular</th>
+                                    <th class="px-4 py-3 text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaDestinatarios" class="divide-y divide-gray-100">
+                                <tr>
+                                    <td colspan="4" class="px-4 py-12 text-center text-gray-400 italic">
+                                        Ninguna base de datos activa. Cargue un Excel o pegue registros a la izquierda.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <div class="lg:col-span-1 space-y-4">
-        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-          <label class="block text-sm font-semibold text-gray-700 mb-2">
-            <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-4 h-4 text-green-600"></i> Redactar Mensaje</span>
-          </label>
-          <textarea id="txtMensaje" rows="6" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none text-sm" 
-            placeholder="Hola {nombre}, tu categoría es {categoria}."></textarea>
-          <p class="text-xs text-gray-500 mt-2">Puedes usar etiquetas dinámicas: <br><strong>{nombre}</strong> y <strong>{categoria}</strong></p>
-        </div>
+    <script>
+        let destinatarios = [];
 
-        <button id="btnIniciar" onclick="procesarEnvios()" class="w-full btn-primary text-white font-medium py-3 px-4 rounded-lg shadow-sm flex items-center justify-center gap-2 cursor-pointer">
-          <i data-lucide="play" class="w-5 h-5"></i> Iniciar Cola de Envíos
-        </button>
-        
-        <div id="progresoContenedor" class="hidden bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-2">
-          <div class="flex justify-between text-xs font-semibold text-gray-600">
-            <span id="progresoTexto">Procesando...</span>
-            <span id="progresoPorcentaje">0%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div id="progresoBarra" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-          </div>
-        </div>
-      </div>
+        // Procesar archivo Excel cargado desde disco
+        document.getElementById('fileExcel').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
 
-      <div class="lg:col-span-2 flex flex-col">
-        <div class="flex justify-between items-center mb-3">
-          <h3 class="text-sm font-bold text-gray-700 flex items-center gap-1">
-            <i data-lucide="users" class="w-4 h-4 text-green-600"></i> Destinatarios detectados en 'registros'
-          </h3>
-          <span id="contadorTotal" class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">Cargando...</span>
-        </div>
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileInfo').classList.remove('hidden');
 
-        <div id="alertaError" class="hidden mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-start gap-2">
-          <i data-lucide="alert-triangle" class="w-5 h-5 shrink-0 mt-0.5"></i>
-          <div>
-            <span class="font-bold">Error de sincronización con Google Sheets:</span>
-            <p id="errorDetalle" class="mt-1 font-mono text-xs text-red-600"></p>
-          </div>
-        </div>
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                const filas = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                procesarMatrizExcel(filas);
+            };
+            reader.readAsArrayBuffer(file);
+        });
 
-        <div class="border border-gray-200 rounded-lg overflow-x-auto bg-gray-50 flex-1 max-h-[400px]">
-          <table class="w-full text-left border-collapse bg-white text-sm">
-            <thead class="bg-gray-50 text-gray-600 sticky top-0 border-b border-gray-200 z-10">
-              <tr>
-                <th class="p-3 font-semibold">DNI</th>
-                <th class="p-3 font-semibold">Apellidos y Nombres</th>
-                <th class="p-3 font-semibold">Categoría</th>
-                <th class="p-3 font-semibold">WhatsApp</th>
-                <th class="p-3 font-semibold text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tablaContactos" class="divide-y divide-gray-100">
-              <tr>
-                <td colspan="5" class="p-8 text-center text-gray-400">Cargando base de datos desde Sheets...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    let listadoContactos = [];
-    let enviadosDni = new Set();
-
-    window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      cargarContactosDesdeSheets();
-    });
-
-    function cargarContactosDesdeSheets() {
-      // Forzar visibilidad inicial de carga
-      document.getElementById('alertaError').classList.add('hidden');
-      
-      google.script.run
-        .withSuccessHandler(contactos => {
-          listadoContactos = contactos;
-          document.getElementById('contadorTotal').innerText = `${contactos.length} registros`;
-          renderizarTabla();
-        })
-        .withFailureHandler(err => {
-          // Mostrar el error real en la pantalla
-          const alerta = document.getElementById('alertaError');
-          const detalle = document.getElementById('errorDetalle');
-          const tbody = document.getElementById('tablaContactos');
-          
-          document.getElementById('contadorTotal').innerText = `Error`;
-          tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-500 font-semibold">No se pudieron cargar los datos. Revisa la alerta arriba.</td></tr>`;
-          
-          detalle.innerText = err.message || err;
-          alerta.classList.remove('hidden');
-          lucide.createIcons();
-        })
-        .obtenerContactos();
-    }
-
-    function renderizarTabla() {
-      const tbody = document.getElementById('tablaContactos');
-      if (listadoContactos.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400">No se encontraron registros en la hoja 'registros'. Asegúrate de que tenga filas con datos.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = '';
-      listadoContactos.forEach((c, index) => {
-        const yaEnviado = enviadosDni.has(c.dni);
-        const tr = document.createElement('tr');
-        tr.className = yaEnviado ? "bg-green-50/50" : "hover:bg-gray-50";
-        tr.innerHTML = `
-          <td class="p-3 font-medium text-gray-700">${c.dni}</td>
-          <td class="p-3 text-gray-600">${c.nombre}</td>
-          <td class="p-3"><span class="px-2 py-0.5 text-xs rounded-md bg-gray-100 text-gray-700">${c.categoria}</span></td>
-          <td class="p-3 text-gray-600 font-mono">${c.whatsapp}</td>
-          <td class="p-3 text-center">
-            ${yaEnviado 
-              ? `<span class="badge-sent px-2 py-1 rounded text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Enviado</span>`
-              : `<button onclick="individualEnvio(${index})" class="text-green-600 hover:text-green-800 p-1 rounded hover:bg-green-50 inline-flex items-center gap-1 font-medium text-xs cursor-pointer">
-                   <i data-lucide="send" class="w-3.5 h-3.5"></i> Enviar
-                 </button>`
+        function procesarMatrizExcel(filas) {
+            if (filas.length < 2) {
+                alert("El archivo no tiene filas suficientes para ser procesado.");
+                return;
             }
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-      lucide.createIcons();
-    }
 
-    function construirMensaje(contacto) {
-      let msg = document.getElementById('txtMensaje').value;
-      if (!msg.trim()) {
-        msg = "Hola {nombre}, tu categoría es {categoria}.";
-      }
-      msg = msg.replace(/{nombre}/g, contacto.nombre);
-      msg = msg.replace(/{categoria}/g, contacto.categoria);
-      return encodeURIComponent(msg);
-    }
+            const encabezados = filas[0].map(h => String(h).toLowerCase().trim());
+            let idxDni = encabezados.findIndex(h => h.includes('dni') || h.includes('doc') || h.includes('id'));
+            let idxNombre = encabezados.findIndex(h => h.includes('nombre') || h.includes('apellido') || h.includes('personal') || h.includes('trabajador'));
+            let idxCelular = encabezados.findIndex(h => h.includes('celular') || h.includes('tel') || h.includes('fono') || h.includes('movil'));
 
-    function individualEnvio(index) {
-      const contacto = listadoContactos[index];
-      if (enviadosDni.has(contacto.dni)) {
-        if (!confirm(`⚠️ El mensaje para ${contacto.nombre} ya ha sido enviado.\n¿Volver a enviar?`)) return;
-      }
-      despacharWhatsApp(contacto);
-    }
+            // Índices por defecto si no coinciden los encabezados por nombre exacto
+            if (idxDni === -1) idxDni = 0;
+            if (idxNombre === -1) idxNombre = 1;
+            if (idxCelular === -1) idxCelular = 2;
 
-    async function procesarEnvios() {
-      if (listadoContactos.length === 0) return;
-      const contenedor = document.getElementById('progresoContenedor');
-      const barra = document.getElementById('progresoBarra');
-      const porcentaje = document.getElementById('progresoPorcentaje');
-      const texto = document.getElementById('progresoTexto');
+            destinatarios = [];
+            for (let i = 1; i < filas.length; i++) {
+                const fila = filas[i];
+                if (!fila || fila.length === 0) continue;
 
-      contenedor.classList.remove('hidden');
+                const dni = fila[idxDni] ? String(fila[idxDni]).trim() : '';
+                const nombre = fila[idxNombre] ? String(fila[idxNombre]).trim() : '';
+                const celular = fila[idxCelular] ? String(fila[idxCelular]).replace(/\s+/g, '').trim() : '';
 
-      for (let i = 0; i < listadoContactos.length; i++) {
-        const contacto = listadoContactos[i];
-        if (enviadosDni.has(contacto.dni)) {
-          if (!confirm(`⚠️ El DNI ${contacto.dni} ya fue enviado.\n¿Reenviar? (Aceptar = Sí, Cancelar = Saltar)`)) continue;
+                if (celular && nombre) {
+                    destinatarios.push({ dni, nombre, celular, enviado: false, id: destinatarios.length });
+                }
+            }
+            renderizarTabla();
         }
 
-        let progreso = Math.round(((i + 1) / listadoContactos.length) * 100);
-        barra.style.width = `${progreso}%`;
-        porcentaje.innerText = `${progreso}%`;
-        texto.innerText = `Abriendo chat de ${contacto.nombre}...`;
+        // Procesar texto pegado desde portapapeles
+        document.getElementById('btnProcesarTexto').addEventListener('click', () => {
+            const rawText = document.getElementById('rawData').value.trim();
+            destinatarios = [];
 
-        despacharWhatsApp(contacto);
-        await new Promise(resolve => setTimeout(resolve, 800));
-      }
-      texto.innerText = "¡Proceso terminado!";
-    }
+            if (!rawText) {
+                alert("El área de texto está vacía.");
+                return;
+            }
 
-    function despacharWhatsApp(contacto) {
-      if (!contacto.whatsapp) return;
-      let telf = contacto.whatsapp.replace(/\D/g, '');
-      if (telf.length === 9) telf = "51" + telf;
-      window.open(`https://api.whatsapp.com/send?phone=${telf}&text=${construirMensaje(contacto)}`, '_blank');
-      enviadosDni.add(contacto.dni);
-      renderizarTabla();
-    }
-  </script>
+            const lineas = rawText.split('\n');
+            lineas.forEach((linea) => {
+                let columnas = linea.split('\t');
+                if (columnas.length < 3) columnas = linea.split(/\s{2,}/);
+                columnas = columnas.map(col => col.trim()).filter(col => col !== '');
+
+                if (columnas.length >= 3) {
+                    destinatarios.push({ 
+                        dni: columnas[0], 
+                        nombre: columnas[1], 
+                        celular: columnas[2].replace(/\s+/g, ''), 
+                        enviado: false, 
+                        id: destinatarios.length 
+                    });
+                }
+            });
+            renderizarTabla();
+        });
+
+        // Dibujar elementos en la tabla de despacho
+        function renderizarTabla() {
+            const tbody = document.getElementById('listaDestinatarios');
+            const contador = document.getElementById('contador');
+            tbody.innerHTML = '';
+
+            if (destinatarios.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="px-4 py-8 text-center text-amber-500 italic">No se hallaron columnas correctas en la carga.</td></tr>`;
+                contador.textContent = '0 registros';
+                return;
+            }
+
+            contador.textContent = `${destinatarios.length} registros`;
+
+            destinatarios.forEach(person => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.id = `row-${person.id}`;
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-mono text-xs text-gray-500">${person.dni || '-'}</td>
+                    <td class="px-4 py-3 font-semibold text-slate-900">${person.nombre}</td>
+                    <td class="px-4 py-3 text-slate-600 font-mono text-xs">${person.celular}</td>
+                    <td class="px-4 py-3 text-center">
+                        <button onclick="enviarMensaje(${person.id})" id="btn-${person.id}" class="bg-[#128C7E] hover:bg-[#075E54] text-white text-xs px-3 py-1.5 rounded-lg font-bold inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs">
+                            <i class="fa-brand fa-whatsapp"></i> Enviar
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Ejecutar apertura de API WhatsApp
+        function enviarMensaje(id) {
+            const plantilla = document.getElementById('txtMensaje').value;
+            const person = destinatarios.find(p => p.id === id);
+
+            if (!person) return;
+            if (!plantilla.trim()) {
+                alert('Ingrese el cuerpo del mensaje corporativo.');
+                return;
+            }
+
+            let mensajeFinal = plantilla
+                .replace(/{nombre}/g, person.nombre)
+                .replace(/{dni}/g, person.dni || '');
+
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${person.celular}&text=${encodeURIComponent(mensajeFinal)}`;
+            window.open(urlWhatsApp, '_blank');
+
+            // Actualización visual de trazabilidad interna
+            const row = document.getElementById(`row-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            if (row && btn) {
+                row.classList.add('bg-emerald-50/40');
+                btn.className = "bg-slate-300 text-slate-500 text-xs px-3 py-1.5 rounded-lg font-medium inline-flex items-center gap-1.5 cursor-not-allowed shadow-none";
+                btn.innerHTML = `<i class="fa-solid fa-check"></i> Despachado`;
+            }
+        }
+    </script>
 </body>
 </html>
