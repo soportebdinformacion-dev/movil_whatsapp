@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Corporativa de Envío Masivo Agrícola Huarmey | Fundo Frusan</title>
+    <title>Plataforma Corporativa de Envío Masivo</title>
+    <!-- Tailwind CSS para diseño web moderno -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Procesador de archivos Excel -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body class="bg-[#f4f6f9] min-h-screen font-sans antialiased text-gray-800">
 
+    <!-- Barra de Navegación / Cabecera de la Empresa -->
     <nav class="bg-[#0f172a] text-white shadow-md px-6 py-4 border-b-4 border-[#128C7E]">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Espacio para el Logo y Nombre de la Empresa -->
             <div class="flex items-center gap-4">
                 <div class="bg-white p-2 rounded-lg shadow-sm flex items-center justify-center w-14 h-14">
+                    <!-- REEMPLAZA ESTA URL POR LA DE TU LOGO REAL -->
                     <img id="empresaLogo" src="AGRICOLA HUARMEY.png" alt="Logo" class="max-h-full max-w-full object-contain" 
                          onerror="this.onerror=null; this.src='https://placehold.co/150x150/0f172a/ffffff?text=LOGO';">
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight uppercase">Módulo de Comunicaciones</h1>
-                    <p class="text-xs text-gray-400">Plataforma Oficial de Envío Masivo Empresa Agrícola Huarmey</p>
+                    <p class="text-xs text-gray-400">Plataforma Oficial de Envío Masivo</p>
                 </div>
             </div>
             
+            <!-- Conectividad Web Indicador -->
             <div class="flex items-center gap-2 bg-[#1e293b] px-3 py-1.5 rounded-full border border-gray-700">
-                <span class="w-2h h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span class="text-xs font-medium text-gray-300">Servicio Web Activo</span>
             </div>
         </div>
@@ -33,8 +39,10 @@
     <div class="max-w-6xl mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
+            <!-- Bloque de Carga e Ingreso de Datos (Izquierda) -->
             <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xs border border-gray-200 flex flex-col gap-5">
                 
+                <!-- Cargar Archivo -->
                 <div>
                     <h2 class="text-base font-bold text-[#0f172a] mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-file-excel text-[#128C7E] text-lg"></i> 1. Cargar Archivo Excel
@@ -58,13 +66,14 @@
                     <div class="flex-grow border-t border-gray-200"></div>
                 </div>
 
+                <!-- Pegar Datos Directo -->
                 <div>
                     <h2 class="text-base font-bold text-[#0f172a] mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-clipboard-list text-slate-500 text-lg"></i> O pegar columnas
                     </h2>
-                    <textarea id="rawData" rows="4" 
+                    <textarea id="rawData" rows="5" 
                         class="w-full p-2.5 border border-gray-200 rounded-lg text-xs font-mono focus:ring-2 focus:ring-[#128C7E] focus:outline-none bg-gray-50 placeholder-gray-400 resize-none"
-                        placeholder="DNI	Apellidos y Nombres	Celular&#10;44556677	Pérez Juan	999888777"></textarea>
+                        placeholder="DNI	Apellidos y Nombres	Celular	Cargo&#10;73055671	Yajahuanca Chuquipoma Danner	982968174	Controlista"></textarea>
                     
                     <button id="btnProcesarTexto" class="w-full mt-2 bg-[#0f172a] hover:bg-[#1e293b] text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer text-xs shadow-xs flex items-center justify-center gap-2">
                         <i class="fa-solid fa-gears"></i> Procesar Bloque Pegado
@@ -72,23 +81,27 @@
                 </div>
             </div>
 
+            <!-- Bloque de Redacción y Gestión de Envíos (Derecha) -->
             <div class="lg:col-span-2 flex flex-col gap-6">
                 
+                <!-- Redacción del Mensaje -->
                 <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
                     <h2 class="text-base font-bold text-[#0f172a] mb-2 flex items-center gap-2">
                         <i class="fa-solid fa-comment-dots text-[#128C7E] text-lg"></i> 2. Redacción de Plantilla
                     </h2>
                     <p class="text-xs text-gray-500 mb-3">
                         Utiliza variables automáticas: 
-                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{nombre}</span> y 
-                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{dni}</span>
+                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{nombre}</span>, 
+                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{dni}</span> y 
+                        <span class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-bold">{cargo}</span>
                     </p>
 
                     <textarea id="txtMensaje" rows="3" 
                         class="w-full p-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#128C7E] focus:outline-none placeholder-gray-400"
-                        placeholder="Estimado(a) {nombre}, su DNI {dni} ya se encuentra habilitado para el ingreso físico. Saludos corporativos."></textarea>
+                        placeholder="Estimado(a) {nombre}, le escribimos con respecto a sus funciones en el puesto de {cargo}. Su DNI asignado es {dni}."></textarea>
                 </div>
 
+                <!-- Lista de Destinatarios Procesados -->
                 <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200 flex-1 flex flex-col">
                     <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
                         <h2 class="text-base font-bold text-[#0f172a] flex items-center gap-2">
@@ -97,19 +110,20 @@
                         <span id="contador" class="text-xs font-bold bg-[#edf7f5] text-[#128C7E] px-3 py-1 rounded-full border border-[#d1e9e4]">0 registros</span>
                     </div>
 
-                    <div class="overflow-x-auto flex-1 max-h-[320px] border border-gray-100 rounded-lg">
+                    <div class="overflow-x-auto flex-1 max-h-[350px] border border-gray-100 rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-slate-700 uppercase bg-slate-50 sticky top-0 border-b border-gray-100">
                                 <tr>
                                     <th class="px-4 py-3">DNI</th>
                                     <th class="px-4 py-3">Apellidos y Nombres</th>
+                                    <th class="px-4 py-3">Cargo</th>
                                     <th class="px-4 py-3">Celular</th>
                                     <th class="px-4 py-3 text-center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="listaDestinatarios" class="divide-y divide-gray-100">
                                 <tr>
-                                    <td colspan="4" class="px-4 py-12 text-center text-gray-400 italic">
+                                    <td colspan="5" class="px-4 py-12 text-center text-gray-400 italic">
                                         Ninguna base de datos activa. Cargue un Excel o pegue registros a la izquierda.
                                     </td>
                                 </tr>
@@ -122,6 +136,7 @@
         </div>
     </div>
 
+    <!-- Lógica de Operación Local y Despacho -->
     <script>
         let destinatarios = [];
 
@@ -151,15 +166,19 @@
                 return;
             }
 
+            // Normalización inteligente para buscar las columnas reales de tu Excel
             const encabezados = filas[0].map(h => String(h).toLowerCase().trim());
-            let idxDni = encabezados.findIndex(h => h.includes('dni') || h.includes('doc') || h.includes('id'));
-            let idxNombre = encabezados.findIndex(h => h.includes('nombre') || h.includes('apellido') || h.includes('personal') || h.includes('trabajador'));
-            let idxCelular = encabezados.findIndex(h => h.includes('celular') || h.includes('tel') || h.includes('fono') || h.includes('movil'));
+            
+            let idxDni = encabezados.findIndex(h => h.includes('dni') || h.includes('documento'));
+            let idxNombre = encabezados.findIndex(h => h.includes('nombre') || h.includes('apellido'));
+            let idxCelular = encabezados.findIndex(h => h.includes('celular') || h.includes('tel') || h.includes('fono'));
+            let idxCargo = encabezados.findIndex(h => h.includes('cargo') || h.includes('puesto'));
 
-            // Índices por defecto si no coinciden los encabezados por nombre exacto
+            // Índices por defecto empíricos según la estructura cargada si fallara la búsqueda semántica
             if (idxDni === -1) idxDni = 0;
             if (idxNombre === -1) idxNombre = 1;
             if (idxCelular === -1) idxCelular = 2;
+            if (idxCargo === -1) idxCargo = 3;
 
             destinatarios = [];
             for (let i = 1; i < filas.length; i++) {
@@ -168,10 +187,11 @@
 
                 const dni = fila[idxDni] ? String(fila[idxDni]).trim() : '';
                 const nombre = fila[idxNombre] ? String(fila[idxNombre]).trim() : '';
-                const celular = fila[idxCelular] ? String(fila[idxCelular]).replace(/\s+/g, '').trim() : '';
+                const celular = fila[idxCelular] ? String(fila[idxCelular]).replace(/[\s\-\+]+/g, '').trim() : '';
+                const cargo = fila[idxCargo] ? String(fila[idxCargo]).trim() : '';
 
                 if (celular && nombre) {
-                    destinatarios.push({ dni, nombre, celular, enviado: false, id: destinatarios.length });
+                    destinatarios.push({ dni, nombre, celular, cargo, enviado: false, id: destinatarios.length });
                 }
             }
             renderizarTabla();
@@ -193,11 +213,13 @@
                 if (columnas.length < 3) columnas = linea.split(/\s{2,}/);
                 columnas = columnas.map(col => col.trim()).filter(col => col !== '');
 
+                // Procesamiento si pegan 4 columnas (DNI | Nombre | Celular | Cargo)
                 if (columnas.length >= 3) {
                     destinatarios.push({ 
                         dni: columnas[0], 
                         nombre: columnas[1], 
-                        celular: columnas[2].replace(/\s+/g, ''), 
+                        celular: columnas[2].replace(/[\s\-\+]+/g, ''), 
+                        cargo: columnas[3] || 'Operador', 
                         enviado: false, 
                         id: destinatarios.length 
                     });
@@ -213,7 +235,7 @@
             tbody.innerHTML = '';
 
             if (destinatarios.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="px-4 py-8 text-center text-amber-500 italic">No se hallaron columnas correctas en la carga.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-8 text-center text-amber-500 italic">No se hallaron columnas correctas en la carga. Asegúrate de incluir Nombres, Celular y Cargo.</td></tr>`;
                 contador.textContent = '0 registros';
                 return;
             }
@@ -227,6 +249,7 @@
                 tr.innerHTML = `
                     <td class="px-4 py-3 font-mono text-xs text-gray-500">${person.dni || '-'}</td>
                     <td class="px-4 py-3 font-semibold text-slate-900">${person.nombre}</td>
+                    <td class="px-4 py-3 text-xs text-indigo-600 bg-indigo-50/30 font-medium rounded-md px-2 py-1 inline-block mt-2 truncate max-w-[160px]">${person.cargo || '-'}</td>
                     <td class="px-4 py-3 text-slate-600 font-mono text-xs">${person.celular}</td>
                     <td class="px-4 py-3 text-center">
                         <button onclick="enviarMensaje(${person.id})" id="btn-${person.id}" class="bg-[#128C7E] hover:bg-[#075E54] text-white text-xs px-3 py-1.5 rounded-lg font-bold inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs">
@@ -249,14 +272,16 @@
                 return;
             }
 
+            // Inserción dinámica automatizada de las 3 variables principales
             let mensajeFinal = plantilla
                 .replace(/{nombre}/g, person.nombre)
-                .replace(/{dni}/g, person.dni || '');
+                .replace(/{dni}/g, person.dni || '')
+                .replace(/{cargo}/g, person.cargo || '');
 
             const urlWhatsApp = `https://api.whatsapp.com/send?phone=${person.celular}&text=${encodeURIComponent(mensajeFinal)}`;
             window.open(urlWhatsApp, '_blank');
 
-            // Actualización visual de trazabilidad interna
+            // Actualización de estado en caliente (UI)
             const row = document.getElementById(`row-${id}`);
             const btn = document.getElementById(`btn-${id}`);
             if (row && btn) {
